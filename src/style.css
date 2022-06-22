@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+}
+html {
+    height: 100%;
+}
+body {
+    padding: 3%;
+}
+main {
+    background-color: rgb(246, 246, 253);
+    padding: 3%;
+    border-radius: 5%;
+}
+h1 {
+    font-size: 150%;
+    color: rgb(2, 2, 87);
+    margin: 5% 0 7% 0;
+}
+
+
+label { 
+    display: block;
+    color: rgb(2, 2, 87);
+    margin: 5% 0 2% 0;
+}
+input {
+    width: 70%;
+    padding: 3% 0 3% 0;
+    border-radius: 2%;
+    border: none;
+    text-indent: 3%;
+
+}
+#valorInicial, #valorMensal {
+    width: 97%;
+}
+select {
+    width: 27%;
+    padding: 3% 0 3% 0;
+}
+#calcular {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    margin: 7% 0 5% 0;
+    background-color: rgb(2, 2, 87);
+    color: white;
+    font-size: 110%;
+}
