@@ -7,15 +7,17 @@ html {
 body {
     padding: 3%;
 }
-main {
+
+#user-input {
     background-color: rgb(246, 246, 253);
-    padding: 3%;
     border-radius: 5%;
+    padding: 3%;
 }
 h1 {
     font-size: 150%;
     color: rgb(2, 2, 87);
     margin: 5% 0 7% 0;
+    text-align: center;
 }
 
 
@@ -27,8 +29,8 @@ label {
 input {
     width: 70%;
     padding: 3% 0 3% 0;
-    border-radius: 2%;
     border: none;
+    border-color: rgb(2, 2, 87);
     text-indent: 3%;
 
 }
@@ -47,4 +49,36 @@ select {
     background-color: rgb(2, 2, 87);
     color: white;
     font-size: 110%;
+}
+
+#result {
+    margin-top: 3%;
+    background-color: rgb(246, 246, 253);
+    border-radius: 5%;
+    padding: 3%;
+    text-align: center;
+}
+
+#inner-inner-result {
+    display: block;
+    background-color: white;
+    margin-top: 3%;
+    padding: 10%;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5%;
+    border: 1px solid rgb(221, 220, 220);
+}
+span {
+    display: block;
+}
+#result-label {
+    color: grey;
+}
+#result-investido {
+    color: rgb(2, 2, 87);
+}
+#result-juros {
+    color: green;
 }

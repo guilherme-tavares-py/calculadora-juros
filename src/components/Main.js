@@ -10,7 +10,9 @@ class Main extends React.Component {
             tipoTaxa: "anual",
             periodo: '',
             tipoPeriodo: "anos",
-            resultado: ''
+            resultado: '',
+            investido: '',
+            juros: ''
 
         };
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -33,9 +35,14 @@ class Main extends React.Component {
         let taxaCalc = (1+this.state.taxa/100)**(1/12)-1
         let periodoCalc = this.state.periodo * 12
         let montanteTotal = formatter.format(montanteInicial*(1+taxaCalc)**periodoCalc + (montanteMensal*((1+taxaCalc)**periodoCalc-1))/taxaCalc)
-        
+        let totalInvestido = parseFloat(montanteInicial);
+        for(let i = 0; i < periodoCalc; i += 1) {
+            totalInvestido += parseFloat(montanteMensal);
+        }
         this.setState({
-            resultado: montanteTotal
+            resultado: montanteTotal,
+            investido: totalInvestido,
+            juros: totalInvestido
         });
         event.preventDefault();
         
@@ -44,34 +51,52 @@ class Main extends React.Component {
         return(
 
             <main>
-                <h1>Calculadora de Juros Compostos</h1>
-                <form onSubmit={this.handleSubmit}>
-                    <label id="valorInicial">Valor Inicial:</label>
-                    <input name="valorInicial" id="valorInicial" type="number" value={this.state.valorInicial} onChange={this.handleInputChange} placeholder="0,00"/>
-        
-                    <label id="valorMensal">Valor Mensal:</label>
-                    <input name="valorMensal" id="valorMensal" type="number" value={this.state.valorMensal} onChange={this.handleInputChange} placeholder="0,00"/>
-        
-                    <label id="taxa">Taxa:</label>
-                    <input name="taxa" id="taxa" type="number" value={this.state.taxa} onChange={this.handleInputChange} placeholder="0,00"/>
-        
-                    <select name="tipoTaxa" value={this.state.tipoTaxa} onChange={this.handleInputChange}>
-                        <option value="anual">Anual</option>
-                        <option value="mensal">Mensal</option>
-                    </select>
-        
-                    <label id="periodo">Período:</label>
-                    <input name="periodo" id="periodo" type="number" value={this.state.periodo} onChange={this.handleInputChange} placeholder="0,00"/>
+                <div id="user-input">
+                    <h1>Calculadora de Juros Compostos</h1>
+                    <form onSubmit={this.handleSubmit}>
+                        <label id="valorInicial">Valor Inicial:</label>
+                        <input name="valorInicial" id="valorInicial" type="number" value={this.state.valorInicial} onChange={this.handleInputChange} placeholder="0,00"/>
+            
+                        <label id="valorMensal">Valor Mensal:</label>
+                        <input name="valorMensal" id="valorMensal" type="number" value={this.state.valorMensal} onChange={this.handleInputChange} placeholder="0,00"/>
+            
+                        <label id="taxa">Taxa:</label>
+                        <input name="taxa" id="taxa" type="number" value={this.state.taxa} onChange={this.handleInputChange} placeholder="0,00"/>
+            
+                        <select name="tipoTaxa" value={this.state.tipoTaxa} onChange={this.handleInputChange}>
+                            <option value="anual">Anual</option>
+                            <option value="mensal">Mensal</option>
+                        </select>
+            
+                        <label id="periodo">Período:</label>
+                        <input name="periodo" id="periodo" type="number" value={this.state.periodo} onChange={this.handleInputChange} placeholder="0,00"/>
 
-                    <select name="tipoPeriodo" value={this.state.tipoPeriodo} onChange={this.handleInputChange}>
-                        <option value="anos">Anos</option>
-                        <option value="meses">Meses</option>
-                    </select>
+                        <select name="tipoPeriodo" value={this.state.tipoPeriodo} onChange={this.handleInputChange}>
+                            <option value="anos">Anos</option>
+                            <option value="meses">Meses</option>
+                        </select>
 
-                    <input id="calcular" type="submit" value="Calcular"/>
-                </form>
+                        <input id="calcular" type="submit" value="Calcular"/>
+                    </form>
 
-                <span value="teste">{this.state.resultado}</span>
+                </div>
+                <div id="result">
+                    <h1>Resultado</h1>
+                    <div id="inner-result">
+                        <div id="inner-inner-result">
+                            <span id="result-label">Valor total final</span>
+                            <span id="result-final">R$ {this.state.resultado}</span>
+                        </div>
+                        <div id="inner-inner-result">
+                            <span id="result-label">Valor total investido</span>
+                            <span id="result-investido">R$ {this.state.investido}</span>
+                        </div>
+                        <div id="inner-inner-result">
+                            <span id="result-label">Total em Juros</span>
+                            <span id="result-juros">R$ {this.state.juros}</span>
+                        </div>
+                    </div>
+                </div>
             </main>
             
         )
