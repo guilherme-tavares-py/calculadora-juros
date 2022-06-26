@@ -25,27 +25,21 @@ class Main extends React.Component {
         this.setState({[name]: value});
     }
     handleSubmit(event) {
-        const formatter = new Intl.NumberFormat('en-US', {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2,
-        });
-
-        let montanteInicial = formatter.format(this.state.valorInicial)
-        let montanteMensal = formatter.format(this.state.valorMensal)
-        let taxaCalc = (1+this.state.taxa/100)**(1/12)-1
-        let periodoCalc = this.state.periodo * 12
-        let montanteTotal = formatter.format(montanteInicial*(1+taxaCalc)**periodoCalc + (montanteMensal*((1+taxaCalc)**periodoCalc-1))/taxaCalc)
-        let totalInvestido = parseFloat(montanteInicial);
+        let montanteInicial = parseFloat(this.state.valorInicial)
+        let montanteMensal = parseFloat(this.state.valorMensal)
+        let taxaCalc = (1+parseFloat(this.state.taxa/100))**(1/12)-1
+        let periodoCalc = parseFloat(this.state.periodo) * 12
+        let montanteTotal = montanteInicial*(1+taxaCalc)**periodoCalc + (montanteMensal*((1+taxaCalc)**periodoCalc-1))/taxaCalc
+        let totalInvestido = montanteInicial
         for(let i = 0; i < periodoCalc; i += 1) {
-            totalInvestido += parseFloat(montanteMensal);
+            totalInvestido += parseFloat(montanteMensal)
         }
         this.setState({
-            resultado: montanteTotal,
-            investido: totalInvestido,
-            juros: totalInvestido
-        });
+            resultado: montanteTotal.toFixed(2),
+            investido: totalInvestido.toFixed(2),
+            juros: (montanteTotal - totalInvestido).toFixed(2)
+        })
         event.preventDefault();
-        
     }
     render(){
         return(
