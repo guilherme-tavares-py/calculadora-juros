@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/calculadora-juros/static/css/main.1d5899b7.css",
+    "main.js": "/calculadora-juros/static/js/main.9be9f677.js",
+    "index.html": "/calculadora-juros/index.html",
+    "main.1d5899b7.css.map": "/calculadora-juros/static/css/main.1d5899b7.css.map",
+    "main.9be9f677.js.map": "/calculadora-juros/static/js/main.9be9f677.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1d5899b7.css",
+    "static/js/main.9be9f677.js"
+  ]
+}
