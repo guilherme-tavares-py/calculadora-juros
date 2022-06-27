@@ -1,0 +1,51 @@
+@media screen and (min-width: 1200px) {
+    #user-input {
+        border-radius: 1%;
+        height: 80vh;
+    }
+
+    h1 {
+        font-size: 180%;
+        text-align: left;
+        margin: 1% 0 3% 0; 
+    }
+ 
+    label {
+        margin: 1% 0 1% 0;
+    }
+
+    input {
+        padding: 1% 0 1% 0;
+        width: 70%;
+    }
+
+    select {
+        padding: 1% 0 1% 0;
+    }
+
+    #calcular {
+        margin: 3% 0 2% 0;
+    }
+
+    #result {
+        border-radius: 1%;
+        height: 80vh;
+       
+    }
+    #inner-result {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        transform: translate(0,50%);
+    }
+
+    #inner-inner-result {
+        display: inline-block;
+        border-radius: 1%;
+        padding: 5%;
+        margin: 1%;
+    }
+    #result-investido, #result-juros, #result-final {
+        font-size: 150%;
+    }
+}
