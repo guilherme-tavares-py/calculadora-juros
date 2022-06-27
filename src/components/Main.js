@@ -26,9 +26,23 @@ class Main extends React.Component {
     }
     handleSubmit(event) {
         let montanteInicial = parseFloat(this.state.valorInicial)
-        let montanteMensal = parseFloat(this.state.valorMensal)
-        let taxaCalc = (1+parseFloat(this.state.taxa/100))**(1/12)-1
-        let periodoCalc = parseFloat(this.state.periodo) * 12
+        let montanteMensal;
+        if(this.state.valorMensal === '') {
+            montanteMensal = 0
+        } else {
+            montanteMensal = parseFloat(this.state.valorMensal)
+        }
+        let taxaCalc
+        if(this.state.tipoTaxa === "mensal") {
+            taxaCalc = this.state.taxa / 100
+        } else if(this.state.tipoTaxa === "anual") {
+            taxaCalc = (1+parseFloat(this.state.taxa/100))**(1/12)-1
+        }
+        let x = 12
+        if(this.state.tipoPeriodo === "meses") {
+            x = 1
+        } 
+        let periodoCalc = parseFloat(this.state.periodo) * x
         let montanteTotal = montanteInicial*(1+taxaCalc)**periodoCalc + (montanteMensal*((1+taxaCalc)**periodoCalc-1))/taxaCalc
         let totalInvestido = montanteInicial
         for(let i = 0; i < periodoCalc; i += 1) {
@@ -49,13 +63,13 @@ class Main extends React.Component {
                     <h1>Calculadora de Juros Compostos</h1>
                     <form onSubmit={this.handleSubmit}>
                         <label id="valorInicial">Valor Inicial:</label>
-                        <input name="valorInicial" id="valorInicial" type="number" value={this.state.valorInicial} onChange={this.handleInputChange} placeholder="0,00"/>
+                        <input name="valorInicial" id="valorInicial" type="number" value={this.state.valorInicial} onChange={this.handleInputChange} placeholder="0,00" required/>
             
                         <label id="valorMensal">Valor Mensal:</label>
                         <input name="valorMensal" id="valorMensal" type="number" value={this.state.valorMensal} onChange={this.handleInputChange} placeholder="0,00"/>
             
                         <label id="taxa">Taxa:</label>
-                        <input name="taxa" id="taxa" type="number" value={this.state.taxa} onChange={this.handleInputChange} placeholder="0,00"/>
+                        <input name="taxa" id="taxa" type="number" value={this.state.taxa} onChange={this.handleInputChange} placeholder="0,00" required/>
             
                         <select name="tipoTaxa" value={this.state.tipoTaxa} onChange={this.handleInputChange}>
                             <option value="anual">Anual</option>
@@ -63,7 +77,7 @@ class Main extends React.Component {
                         </select>
             
                         <label id="periodo">Período:</label>
-                        <input name="periodo" id="periodo" type="number" value={this.state.periodo} onChange={this.handleInputChange} placeholder="0,00"/>
+                        <input name="periodo" id="periodo" type="number" value={this.state.periodo} onChange={this.handleInputChange} placeholder="0,00" required/>
 
                         <select name="tipoPeriodo" value={this.state.tipoPeriodo} onChange={this.handleInputChange}>
                             <option value="anos">Anos</option>
